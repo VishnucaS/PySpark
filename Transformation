@@ -1,3 +1,6 @@
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+
 data = [("Anne Theodore", 28, "1987-09-12", "Female", 3224, 50000, 3),
 ("Sebastian Lucas", 42, "1980-05-23", "Male", 5653, 70000, 3),
 ("Elizabeth Gates", 19, "2004-12-01", "Female", 3444, 40000, 1),
