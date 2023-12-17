@@ -1,0 +1,46 @@
+data = [("Anne Theodore", 28, "1987-09-12", "Female", 3224, 50000, 3),
+("Sebastian Lucas", 42, "1980-05-23", "Male", 5653, 70000, 3),
+("Elizabeth Gates", 19, "2004-12-01", "Female", 3444, 40000, 1),
+("Jack Black", 35, "1988-03-17", "Male", 3434, 90000, 1),
+("Liam Davis", 31, "1992-07-08", "Male", 2356, 48000, 2),
+("Robert Browny", 24, "1999-11-19", "Female", 6712, 58000, 2),
+("Swift Jason", 29, "1994-02-28", "Male", 1145, 80000, 2),
+("Olivia Garner", 38, "1985-10-04", "Female", 9834, 90000, 1),
+("Christopher Smith", 47, "1976-06-15", "Male", 6789, 23000, 3),
+("Francis John", 26, "1997-12-25", "Female", 2350, 34000, 4),
+("Jane Steve", 33, "1990-04-03", "Female", 3456, 3071, 4),
+("Mary Alexander", 41, "1982-08-27", "Female", 8715, 78000, 4),
+("Daniel Noah", 52, "1971-02-09", "Male", 2399, 5926, 4)]
+
+schema = ["name", "age", "date_of_birth", "gender", "ID_number", "salary","deptid"]
+
+// Creation of Department Data and Schema
+dept_data=[("HR",1),("IT",2),("FINANCE",3),("Operations",5)]
+dept_schema=["Department","deptid"]
+
+
+employee_df=spark.createDataFrame(data,schema)
+deptdf=spark.createDataFrame(dept_data,dept_schema)
+
+deptdf.show()
+
+display(employee_df.join(deptdf,employee_df.deptid==deptdf.deptid,"inner"))
+
+display(employee_df.join(deptdf,employee_df.deptid==deptdf.deptid,"full")
+        .orderBy("age"))
+
+
+display(employee_df.join(deptdf,employee_df.deptid==deptdf.deptid,"left")
+        .orderBy("age"))
+
+
+display(employee_df.join(deptdf,employee_df.deptid==deptdf.deptid,"right")
+        .orderBy("age"))
+
+
+
+display(employee_df.join(deptdf,employee_df.deptid==deptdf.deptid,"leftsemi")
+        .orderBy("age"))
+
+
+display(employee_df.join(deptdf,employee_df.deptid==deptdf.deptid,"leftanti")
